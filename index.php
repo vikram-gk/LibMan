@@ -83,8 +83,8 @@ require('dbconn.php');
 	</div>
 
 	<div class="footer w3layouts agileits">
-		<p> &copy; 2019LibMan Library Management System. All Rights Reserved </a></p>
-		<p><a class="underline" href="about.html">About the Project</a></p>
+		<p> &copy; 2019 LibMan.  All Rights Reserved </a></p>
+		<p><a class="underline" href="about.html">About Us</a></p>
 	</div>
 
 <?php
