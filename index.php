@@ -49,6 +49,8 @@ require('dbconn.php');
 			<p id="loginBox"></p>
 			
 			<div class="clear"></div>
+			<br>
+			<a href="http://localhost:3000" class="btn btn-primary">Chatt!!
 		</div>
 
 		<div class="register">

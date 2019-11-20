@@ -12,5 +12,5 @@
         $avail=$row['Availability'];
         $res=$bookid.'|'.$name.'|'.$avail.';';
         echo $res;
-    }
+    } 
 ?> 
