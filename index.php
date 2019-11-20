@@ -50,7 +50,7 @@ require('dbconn.php');
 			
 			<div class="clear"></div>
 			<br>
-			<a href="http://localhost:3000" class="btn btn-primary">Chatt!!
+			<a href="http://localhost:3000" class="btn btn-primary">Chatt!!</a>
 		</div>
 
 		<div class="register">
