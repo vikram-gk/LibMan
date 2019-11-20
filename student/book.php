@@ -63,6 +63,7 @@ if ($_SESSION['RollNo']) {
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
+                                <li><a href="books_for_you.php"><i class="menu-icon icon-book"></i>Books For You</a></li>
                                 <li><a href="logout.php"><i class="menu-icon icon-signout"></i>Logout </a></li>
                             </ul>
                         </div>
@@ -81,12 +82,13 @@ if ($_SESSION['RollNo']) {
 
                         ?>
                         <table class="table" id = "tables">
-                            <thead>
-                            <tr>
-                              <th>Book id</th>
-                              <th>Book name</th>
-                              <th>Availability</th>
-                              <th></th>
+
+                                  <thead>
+                                    <tr>
+                                      <th>Book id</th>
+                                      <th>Book name</th>
+                                      <th>Availability</th>
+                                      <th><center>Options</center></th>
                                     </tr>
                             </thead>
                             <tbody>
@@ -129,7 +131,7 @@ if ($_SESSION['RollNo']) {
             <!--/.container-->
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2019LibMan Library Management System. All Rights Reserved
+                <b class="copyright">&copy; 2019 LibMan Library Management System. All Rights Reserved
             </div>
         </div>
         

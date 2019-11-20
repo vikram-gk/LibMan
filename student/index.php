@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require('dbconn.php');
 ?>
 
@@ -60,7 +60,8 @@ require('dbconn.php');
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
-                                <li><a href="logout.php"><i class="menu-icon icon-signout"></i>Logout </a></li>
+<li><a href="books_for_you.php"><i class="menu-icon icon-book"></i>Books For You</a></li>
+<li><a href="logout.php"><i class="menu-icon icon-signout"></i>Logout </a></li>
                             </ul>
                         </div>
                         <!--/.sidebar-->
@@ -110,7 +111,7 @@ require('dbconn.php');
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2019LibMan Library Management System. All Rights Reserved
+                <b class="copyright">&copy; 2019 LibMan Library Management System. All Rights Reserved
             </div>
         </div>
         
