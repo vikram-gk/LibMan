@@ -20,7 +20,7 @@ if ($_SESSION['RollNo']) {
         <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
             rel='stylesheet'>
     </head>
-    <body>
+    <body onload="init()">
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
@@ -73,35 +73,16 @@ if ($_SESSION['RollNo']) {
                     </div>
 
                     <div class="span9">
-                  <form class="form-horizontal row-fluid" action="book.php" method="post">
-                                        <div class="control-group">
-                                            <label class="control-label" for="Search"><b>Search:</b></label>
-                                            <div class="controls">
-                                                <input type="text" id="title" name="title" placeholder="Enter Name/ID of Book" class="span8">
-                                                <button type="submit" name="submit"class="btn">Search</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <br>
-                                    <?php
-                                    if(isset($_POST['submit']))
-                                        {$s=$_POST['title'];
-                                            $sql="select * from LMS.book where BookId='$s' or Title like '%$s%'";
-                                        }
-                                    else
-                                        $sql="select * from LMS.book";
-
-                                    $result=$conn->query($sql);
-                                    $rowcount=mysqli_num_rows($result);
-
-                                    if(!($rowcount))
-                                        echo "<br><center><h2><b><i>No Results</i></b></h2></center>";
-                                    else
-                                    {
-
-                                    
-                                    ?>
-                        <table class="table" id = "tables">
+                        <?php
+                            $sql="select * from LMS.book limit 20";
+                            $result=$conn->query($sql);
+                            $rowcount=mysqli_num_rows($result);
+                            if(!($rowcount))
+                                echo "<br><center><h2><b><i>No Results</i></b></h2></center>";
+                            else
+                            {
+                                ?>
+                                <table class="table" id = "tables">
                                   <thead>
                                     <tr>
                                       <th>Book id</th>
@@ -113,23 +94,22 @@ if ($_SESSION['RollNo']) {
                                   <tbody>
                                     <?php
                             
-                            //$result=$conn->query($sql);
-                            while($row=$result->fetch_assoc())
-                            {
-                                $bookid=$row['BookId'];
-                                $name=$row['Title'];
-                                $avail=$row['Availability'];
-                            
-                           
-                            ?>
+                                    while($row=$result->fetch_assoc())
+                                    {
+                                        $bookid=$row['BookId'];
+                                        $name=$row['Title'];
+                                        $avail=$row['Availability'];
+                                   
+                                    ?>
                                     <tr>
                                       <td><?php echo $bookid ?></td>
                                       <td><?php echo $name ?></td>
                                       <td><b><?php echo $avail ?></b></td>
                                         <td><center>
-                                            <a href="bookdetails.php?id=<?php echo $bookid; ?>" class="btn btn-primary">Details</a>
-                                            <a href="edit_book_details.php?id=<?php echo $bookid; ?>" class="btn btn-success">Edit</a>
-                                        </center></td>
+                                                <a href="bookdetails.php?id=<?php echo $bookid; ?>" class="btn btn-primary">Details</a>
+                                                <a href="edit_book_details.php?id=<?php echo $bookid; ?>" class="btn btn-success">Edit</a>
+                                            </center>
+                                        </td>
                                     </tr>
                                <?php }} ?>
                                </tbody>
@@ -164,3 +144,64 @@ if ($_SESSION['RollNo']) {
 else {
     echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
 } ?>
+
+<script type="text/javascript">
+
+    function init(){
+           window.onscroll=obj.getContent;
+            scrollAmt=250;
+            count=1;
+            obj.getContent();
+        } 
+        var obj={
+            xhr:new XMLHttpRequest(),
+            getContent:function(){
+                if (document.documentElement.scrollTop>scrollAmt){
+                    obj.xhr.onreadystatechange=obj.showContent;
+                    obj.xhr.open("GET","http://localhost/LibMan/admin/pfbook.php?count="+count,true);
+                    obj.xhr.send();
+                }
+            },
+            showContent:function(){
+                if (this.readyState==4 && this.status==200){ 
+                   console.log (this.responseText);
+                   var table=document.getElementById('tables');
+                   var res=this.responseText.split(";");
+                   var i=0;
+                   var len=res.length;
+                   while(i<len-1){
+                        var items=res[i].split("|");
+                        var row=document.createElement('tr');
+                        var id=document.createElement('td');
+                        id.innerHTML=items[0];
+                        var name=document.createElement('td');
+                        name.innerHTML=items[1];
+                        var avail=document.createElement('td');
+                        avail.innerHTML=items[2];
+                        var button=document.createElement('td');
+                        var center=document.createElement('center');
+                        var detbtn=document.createElement('a');
+                        detbtn.href="bookdetails.php?id="+items[0];
+                        detbtn.className="btn btn-primary";
+                        detbtn.style.marginRight="5px";
+                        detbtn.innerHTML="Details";
+                        var editbtn=document.createElement('a');
+                        editbtn.href="edit_book_details.php?id="+items[0];
+                        editbtn.className="btn btn-success";
+                        editbtn.innerHTML="Edit";
+                        center.appendChild(detbtn);
+                        center.appendChild(editbtn);
+                        button.appendChild(center);
+                        row.appendChild(id);
+                        row.appendChild(name);
+                        row.appendChild(avail);
+                        row.appendChild(button);
+                        i=i+1;
+                        table.appendChild(row);
+                   }
+                    scrollAmt+=document.documentElement.scrollTop;
+                    count=count+1;
+                }
+            }
+        }
+</script>
