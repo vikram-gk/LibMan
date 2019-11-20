@@ -1,0 +1,122 @@
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+ 
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 20px;
+    height: 100%;
+    background: url("image.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Comfortaa', sans-serif;
+    margin: 0px;
+}
+
+#title{
+    font-family:'Fascinate Inline';
+}
+
+div#change_username {
+    height: 3%;
+    display: inline-block;
+    margin-left:50px;
+}
+
+#chatroom {
+    border: 4px solid white;
+    height: 68%;
+    overflow: auto;/*
+    background: rgba(220, 220, 220, 0.2);*/
+    margin:10px 50px;
+    border-radius: 8px;
+}
+
+section#input_zone {
+    height: 7%;
+    text-align: center;
+    border-color: #464141;
+    margin:0px 48px;
+}
+
+.vertical-align {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+input#username {
+    font-family: 'Oswald', sans-serif;
+    margin-right: 10px;
+    border-radius: 8px;
+    height:30px;
+    padding: 10px;
+}
+
+input#message {
+    display: inline-block;
+    width: 88%;
+    height: 70%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2vh;
+    border-radius: 8px;
+    margin-right: 15px;
+    padding: 10px;
+}
+
+button#send_message {
+    display: inline-block;
+    height: 70%;
+    width: 10%;
+}
+
+p.message {
+    margin: 0px;
+    width: 100%;
+    height: 40px;
+    font-size: 2vh;
+    font-family: 'Comfortaa', sans-serif;
+    padding: 1vh;
+}
+
+.message:nth-child(even) {
+    background-color: #EBE0E0;
+    opacity:0.5;
+    color: black;
+    font-weight: bold;
+}
+
+.message:nth-child(odd) {
+    background-color: #999DA5;
+    opacity:0.5;
+    color: black;
+    font-weight: bold;
+}
+
+#feedback{
+    background-color: white;
+    padding-left:10px;
+    font-size: 13px;
+}
