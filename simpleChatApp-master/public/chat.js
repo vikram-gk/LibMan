@@ -68,7 +68,10 @@ $(function(){
 	message.bind("keypress", () => {
 		socket.emit('typing')
 	})
-
+	//modification to take off the "typing message"
+	body.bind("click",() =>{
+		socket.emit('')
+	})
 	//Listen on typing
 	socket.on('typing', (data) => {
 		feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
