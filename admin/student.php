@@ -129,7 +129,7 @@ if ($_SESSION['RollNo']) {
                                         <td>
                                         <center>
                                             <a href="studentdetails.php?id=<?php echo $rollno; ?>" class="btn btn-success">Details</a>
-                                            <!--a href="remove_student.php?id= <?phpecho $rollno; ?>" class="btn btn-danger">Remove</a-->
+                                            <!--a href="remove_student.php?id= <?php echo $rollno; ?>" class="btn btn-danger">Remove</a-->
                                       </center>
                                         </td>
                                     </tr>
