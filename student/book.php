@@ -59,7 +59,7 @@ if ($_SESSION['RollNo']) {
                                 </li>
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="history.php"><i class="menu-icon icon-tasks"></i>Previously Borrowed Books </a></li>
-                                <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Recommend Books </a></li>
+                                <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Suggest Books </a></li>
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
@@ -71,8 +71,10 @@ if ($_SESSION['RollNo']) {
                     </div>
                     <!--/.span3-->
                     <div class="span9">
+                        <p id="respBox"></p>
                         <?php
-                            $sql="select * from LMS.book limit 20";
+                            $roll=$_SESSION['RollNo'];
+                            $sql="select * from LMS.book limit 15";
                             $result=$conn->query($sql);
                             $rowcount=mysqli_num_rows($result);
                             if(!($rowcount))
@@ -116,7 +118,15 @@ if ($_SESSION['RollNo']) {
                                         <?php
                                         if($avail > 0)
                                             //$aux=1;
+                                            {
                                             echo "<a href=\"issue_request.php?id=".$bookid."\" class=\"btn btn-success\">Issue</a>";
+//                                                $sql="insert into LMS.record (RollNo,BookId,Time) values ('$roll','$bookid', curtime())";
+//                                                if($conn->query($sql) === TRUE)
+//                                                    echo "<a onClick=\"succ('Request Sent Successfully','green')\" class=\"btn btn-success\">Issue</a>";
+//                                                else
+//                                                    echo "<a onClick=\"succ('Request has already been send','red')\" class=\"btn btn-success\">Issue</a>";
+                                                
+                                            }
                                         ?>
                                         </center></td>
                                     </tr>
@@ -154,17 +164,24 @@ else {
 } ?>
 
 <script type="text/javascript">
+function succ(message,color){
+    var respBox=document.getElementById('respBox');
+    respBox.innerHTML=message;
+    respBox.style.color=color;
+}
 
     function init(){
            window.onscroll=obj.getContent;
-            scrollAmt=250;
+            scrollAmt=200;
             count=1;
             obj.getContent();
         } 
         var obj={
             xhr:new XMLHttpRequest(),
             getContent:function(){
+                //console.log(document.documentElement.scrollTop);
                 if (document.documentElement.scrollTop>scrollAmt){
+                    console.log("fuuuuccckkk");
                     obj.xhr.onreadystatechange=obj.showContent;
                     obj.xhr.open("GET","http://localhost/LibMan/student/pfbook.php?count="+count,true);
                     obj.xhr.send();
